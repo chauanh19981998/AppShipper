@@ -12,6 +12,7 @@
 
         <EditText
             android:id="@+id/edt_Name"
+            android:backgroundTint="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Your Name" />
@@ -23,6 +24,7 @@
 
         <EditText
             android:id="@+id/edt_Phone"
+            android:backgroundTint="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Your Phone" />

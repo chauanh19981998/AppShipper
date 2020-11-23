@@ -352,7 +352,7 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
 
                         Map<String, Object> update_data = new HashMap<>();
                         update_data.put("currentLat", location.getLatitude());
-                        update_data.put("currentLng", location.getLongitude());
+                        update_data.put("currenLng", location.getLongitude());
                         update_data.put("estimateTime", estimateTime);
 
                         FirebaseDatabase.getInstance()
@@ -454,10 +454,6 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
         .snippet(place.getAddress())
         .position(place.getLatLng()));
         //add destination
-
-
-
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -527,8 +523,7 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.box))
                 .title(shippingOrderModel.getOrderModel().getUserName())
                 .snippet(shippingOrderModel.getOrderModel().getShippingAddress())
-                .position(new LatLng(shippingOrderModel.getOrderModel().getLat(),
-                        shippingOrderModel.getOrderModel().getLng())));
+                .position(new LatLng(shippingOrderModel.getOrderModel().getLat(), shippingOrderModel.getOrderModel().getLng())));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -614,11 +609,15 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
                 Common.setSpanStringColor("Name: ",
                         shippingOrderModel.getOrderModel().getUserName(),
                         txt_name,
-                        Color.parseColor("#333639"));
+                        Color.parseColor("#1e272e"));
 
-                txt_date.setText(new StringBuilder()
-                        .append(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
-                                .format(shippingOrderModel.getOrderModel().getCreateDate())));
+//                txt_date.setText(new StringBuilder()
+//                        .append(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+//                                .format(shippingOrderModel.getOrderModel().getCreateDate())));
+                Common.setSpanStringColor("Total: ",
+                        String.valueOf(shippingOrderModel.getOrderModel().getFinalPayment()),
+                        txt_date,
+                        Color.parseColor("#ff3f34"));
 
                 Common.setSpanStringColor("No: ",
                         shippingOrderModel.getOrderModel().getKey(),
@@ -628,7 +627,7 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
                 Common.setSpanStringColor("Address: ",
                         shippingOrderModel.getOrderModel().getShippingAddress(),
                         txt_address,
-                        Color.parseColor("#795548"));
+                        Color.parseColor("#1e272e"));
 
                 Glide.with(this)
                         .load(shippingOrderModel.getOrderModel().getCartItemList().get(0)
@@ -729,7 +728,7 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
 
                             Map<String, Object> update_data = new HashMap<>();
                             update_data.put("currentLat", lastLocation.getLatitude());
-                            update_data.put("currentLng", lastLocation.getLongitude());
+                            update_data.put("currenLng", lastLocation.getLongitude());
                             update_data.put("estimateTime", estimateTime);
 
                             FirebaseDatabase.getInstance()

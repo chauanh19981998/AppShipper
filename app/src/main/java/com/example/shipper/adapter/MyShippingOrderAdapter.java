@@ -61,13 +61,18 @@ public class MyShippingOrderAdapter extends RecyclerView.Adapter<MyShippingOrder
 
         Common.setSpanStringColor("No.: ",
                 shippingOrderModelList.get(position).getOrderModel().getKey(),
-                holder.txt_order_number, Color.parseColor("#BA454A"));
+                holder.txt_order_number, Color.parseColor("#1e272e"));
         Common.setSpanStringColor("Address: ",
                 shippingOrderModelList.get(position).getOrderModel().getShippingAddress(),
-                holder.txt_order_address, Color.parseColor("#BA454A"));
-        Common.setSpanStringColor("Payment: ",
-                shippingOrderModelList.get(position).getOrderModel().getTransactionId(),
-                holder.txt_payment, Color.parseColor("#BA454A"));
+                holder.txt_order_address, Color.parseColor("#1e272e"));
+//        Common.setSpanStringColor("Payment: ",
+//                shippingOrderModelList.get(position).getOrderModel().getTransactionId(),
+//                holder.txt_payment, Color.parseColor("#BA454A"));
+
+        if (shippingOrderModelList.get(position).getOrderModel().getTransactionId().contains("Cash On Delivery"))
+            holder.txt_payment.setText(new StringBuilder("Payment: ").append("Cash On Delivery"));
+        else
+            holder.txt_payment.setText(new StringBuilder("Payment: ").append("Paid"));
 
         //Disable button when order is start delyvery
         if (shippingOrderModelList.get(position).isStartTrip())
