@@ -52,8 +52,7 @@ public class MyShippingOrderAdapter extends RecyclerView.Adapter<MyShippingOrder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Glide.with(context)
-                .load(shippingOrderModelList.get(position).getOrderModel().getCartItemList()
-                .get(0).getFoodImage())
+                .load(R.drawable.travel_guide)//shippingOrderModelList.get(position).getOrderModel().getCartItemList().get(0).getFoodImage()
                 .into(holder.img_food);
         holder.txt_date.setText(new StringBuilder(
                 simpleDateFormat.format(shippingOrderModelList.get(position).getOrderModel().getCreateDate())

@@ -242,9 +242,9 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
                                                                         {
                                                                             TokenModel tokenModel = snapshot.getValue(TokenModel.class);
                                                                             Map<String,String> notiData = new HashMap<>();
-                                                                            notiData.put(Common.NOTI_TITLE,"Your order have been shipped");
-                                                                            notiData.put(Common.NOTI_CONTENT, new StringBuilder("By shipper: ")
-                                                                                    .append(Common.currentShipperUser.getName()).toString());
+                                                                            notiData.put(Common.NOTI_TITLE,"Your Trip is Done");
+                                                                            notiData.put(Common.NOTI_CONTENT, new StringBuilder("By Tour Guid: ")
+                                                                                    .append(Common.currentShipperUser.getName()).append(" Thank You").toString());
 
                                                                             FCMSendData sendData = new FCMSendData(tokenModel.getToken(),notiData);
 
@@ -520,19 +520,12 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
 
         //add box
         mMap.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.box))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.passenger))
                 .title(shippingOrderModel.getOrderModel().getUserName())
                 .snippet(shippingOrderModel.getOrderModel().getShippingAddress())
                 .position(new LatLng(shippingOrderModel.getOrderModel().getLat(), shippingOrderModel.getOrderModel().getLng())));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         fusedLocationProviderClient.getLastLocation()
@@ -541,9 +534,9 @@ public class ShippingActivity extends FragmentActivity implements OnMapReadyCall
                 })
                 .addOnSuccessListener(location -> {
                     String to = new StringBuilder()
-                            .append(shippingOrderModel.getOrderModel().getLat())
+                            .append(shippingOrderModel.getOrderModel().getLat()) //shippingOrderModel.getOrderModel().getLat()
                             .append(",")
-                            .append(shippingOrderModel.getOrderModel().getLng())
+                            .append(shippingOrderModel.getOrderModel().getLng()) //shippingOrderModel.getOrderModel().getLng()
                             .toString();
                     String from = new StringBuilder()
                             .append(location.getLatitude())
